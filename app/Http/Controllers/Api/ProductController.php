@@ -37,7 +37,6 @@ class ProductController extends Controller
         $product->precio = $request->precio;
         $product->stock = $request->stock;
         $product->save();
-
         return $product;
     }
 

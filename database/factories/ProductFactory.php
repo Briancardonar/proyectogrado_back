@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -14,6 +15,8 @@ class ProductFactory extends Factory
      *
      * @return array<string, mixed>
      */
+    protected $model = Product::class;
+
     public function definition()
     {
         return [
@@ -21,5 +24,6 @@ class ProductFactory extends Factory
             'precio' => $this->faker->randomFloat(1, 20, 30),
             'stock' => $this->faker->randomDigit(),
         ];
+
     }
 }
