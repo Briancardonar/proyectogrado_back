@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      DB_DATABASE: database_test
+      DB_DATABASE: apiproyecto_test
       DB_USERNAME: root
       DB_PASSWORD: root
       DB_HOST: 127.0.0.1
