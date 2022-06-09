@@ -1,4 +1,4 @@
-name: Laravel 7, MariaDb, & Redis CI
+name: Laravel 8, MariaDb, & Redis CI
 
 on:
   push:
@@ -43,7 +43,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php-versions: ['7.4']
+        php-versions: ['8.0.2']
 
     steps:
       - name: Checkout
