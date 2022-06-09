@@ -13,7 +13,9 @@ jobs:
           persist-credentials: false
       - name: Install and Build
         run: |
-          make docker-testing
+          composer install
+          docker-compose --env-file ./.env.testing -f docker-compose.testing.yml up -d --build
+          bash ./tests.sh
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
