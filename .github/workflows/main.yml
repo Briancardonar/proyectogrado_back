@@ -42,7 +42,7 @@ jobs:
           - 6379/tcp
         options: --health-cmd="redis-cli ping" --health-interval=10s --health-timeout=5s --health-retries=3
     strategy:
-      fail-fast: false
+      fail-fast: true
       matrix:
         php-versions: ['8.1.0']
 
@@ -83,7 +83,9 @@ jobs:
   
       #- name: Create Dabase
       # run: mysql --port=3306 -uroot -proot --protocol=TCP -e 'CREATE DATABASE IF NOT EXISTS apiproyecto_test;'
-      
+      - name: Delete tables from database
+        run: php artisan db:wipe --env=testing
+  
       - name: Run Migration
         run: php artisan migrate --env=testing
       
