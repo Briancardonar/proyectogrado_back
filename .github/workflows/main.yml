@@ -24,6 +24,7 @@ jobs:
       SESSION_DRIVER: redis
       MYSQL_ALLOW_EMPTY_PASSWORD: false
       MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_HOST: 172.18.0.1
       MYSQL_DATABASE: database_test
     services:
       mariadb:
