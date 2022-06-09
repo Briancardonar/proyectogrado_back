@@ -1,4 +1,4 @@
-include .env
+include .env.testing
 docker-debug:
 	docker-compose -f docker-compose.yml -f docker-compose.debug.yml up -d --build
 docker:
@@ -25,7 +25,7 @@ docker-lint:
 	docker-compose exec sams composer lint
 
 docker-testing:
-	docker-compose --env-file ./.env.testing -f docker-compose.testing.yml up -d --build
+	docker-compose --env-file ./.env.testing -f docker-compose.testing.yml build --no-cache
 
 docker-runtests:
 	bash ./tests.sh

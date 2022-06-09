@@ -7,7 +7,6 @@ services:
         uid: 1000
       context: ./
       dockerfile: Dockerfile
-      target: testing
     image: sams-back-testing
     container_name: sams-back-testing
     working_dir: /var/www/

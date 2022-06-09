@@ -1,4 +1,4 @@
-FROM php:7.4.27-fpm as base
+FROM php:7.4.27-fpm
 ARG user
 ARG uid
 # Install system dependencies
