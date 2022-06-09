@@ -15,8 +15,7 @@ jobs:
         run: |
           composer install
           make docker-testing
-          make docker-run-tests
-          bash ./tests.sh
+          make docker-runtests
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
