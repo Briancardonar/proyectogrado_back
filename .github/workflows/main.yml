@@ -15,7 +15,6 @@ jobs:
           cp .env.testing .env
           composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
           php artisan key:generate
-          php passport install --env=testing
           chmod -R 777 storage bootstrap/cache
       - name: Execute tests (Unit and Feature tests) via PHPUnit
         env:
@@ -26,4 +25,5 @@ jobs:
           DB_PASSWORD: root
         run: |
           php artisan migrate --env=testing
+          php passport install --env=testing
           php aritsan test --filter ProducTest --repeat 50
