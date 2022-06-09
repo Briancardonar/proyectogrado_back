@@ -13,10 +13,11 @@ jobs:
           persist-credentials: false
         env:
          ENV_TESTING: ${{ env.testing }}
+      - name: Copy env file
+      - run: php -r "file_exists('.env.testing') || copy('env.testing');"
       - name: Install and Build
         run: |
           composer install
-          php -r "file_exists('.env.testing') || copy('env.testing');"
           php artisan db:wipe --env=testing
           php artisan migrate --env=testing
           php artisan test --testsuite feature
