@@ -5,7 +5,7 @@ ARG uid
 RUN apt-get update && apt-get install -y curl libpng-dev libonig-dev libxml2-dev unzip libzip-dev libmagickwand-dev
 RUN pecl install imagick
 # Install PHP extensions
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd xml xmlrpc soap intl
+RUN docker-php-ext-install pdo_mysql
 RUN docker-php-ext-install zip && docker-php-ext-enable imagick
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg && docker-php-ext-install -j$(nproc) gd
 # optimizacion de php
