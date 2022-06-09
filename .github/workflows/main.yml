@@ -11,18 +11,9 @@ jobs:
         uses: actions/checkout@v2 # If you're using actions/checkout@v2 you must set persist-credentials to false in most cases for the deployment to work correctly.
         with:
           persist-credentials: false
-      - name: Copy env file
-        run: php -r "file_exists('.env') || copy('.env.testing', '.env');"
-      - name: Connect DB
-        env:
-          DB_CONNECTION: mysql
-          DB_DATABASE: apiproyecto_test
       - name: Install and Build
         run: |
-          composer install
-          php artisan db:wipe --env=testing
-          php artisan migrate --env=testing
-          php artisan test --testsuite feature
+          make docker-testing
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
