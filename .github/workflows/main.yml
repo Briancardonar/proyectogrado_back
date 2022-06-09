@@ -81,7 +81,7 @@ jobs:
         run: php artisan config:clear --env=testing
       
       - name: Create Dabase
-        run: mysql -h 127.0.0.1 --port 3306 -u root -root -e 'CREATE DATABASE IF NOT EXISTS database_test;'
+        run: mysql -h 127.0.0.1 --port 8888 -u root -root -e 'CREATE DATABASE IF NOT EXISTS database_test;'
       
       - name: Run Migration
         run: php artisan migrate --env=testing
