@@ -14,7 +14,8 @@ jobs:
       - name: Install and Build
         run: |
           composer install
-          docker-compose --env-file ./.env.testing -f docker-compose.testing.yml up -d --build
+          make docker-testing
+          make docker-run-tests
           bash ./tests.sh
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@releases/v3
