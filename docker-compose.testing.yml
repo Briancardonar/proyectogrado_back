@@ -1,0 +1,43 @@
+version: "3.8"
+services:
+  sams-testing:
+    build:
+      args:
+        user: admin
+        uid: 1000
+      context: ./
+      dockerfile: Dockerfile
+      target: testing
+    image: sams-back-testing
+    container_name: sams-back-testing
+    working_dir: /var/www/
+    depends_on:
+      - mysql-test
+    volumes:
+      - ./:/var/www
+    networks:
+      - sams-dev-testing
+
+  mysql-test:
+    image: mariadb:10.5.13
+    container_name: sams-db-dev-testing
+    command: --default-authentication-plugin=mysql_native_password
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "3310:3306"
+    volumes:
+      - sams-testing:/var/lib/mysql
+    networks:
+      - sams-dev-testing
+
+volumes:
+  sams-testing:
+
+
+networks:
+  sams-dev-testing:
+    driver: bridge
