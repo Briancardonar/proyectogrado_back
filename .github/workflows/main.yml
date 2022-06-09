@@ -24,6 +24,7 @@ jobs:
           DB_USER: root
           DB_PASSWORD: root
         run: |
+          sleep 10
           php artisan migrate --env=testing
           php passport install --env=testing
           php aritsan test --filter ProducTest --repeat 50
