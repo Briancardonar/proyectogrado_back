@@ -25,7 +25,7 @@ docker-lint:
 	docker-compose exec sams composer lint
 
 docker-testing:
-	docker-compose --env-file ./.env.testing -f docker-compose.testing.yml build --no-cache
+	docker-compose --env-file ./.env.testing -f docker-compose.testing.yml up -d --build
 
 docker-runtests:
 	bash ./tests.sh

@@ -1,4 +1,4 @@
-FROM php:7.4.27-fpm
+FROM php:8.1.0-fpm as base
 ARG user
 ARG uid
 # Install system dependencies
@@ -19,7 +19,21 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Create system user to run Composer and Artisan Commands
 RUN useradd -G www-data,root -u $uid -d /home/$user $user
 RUN mkdir -p /home/$user/.composer && chown -R $user:$user /home/$user
-#Test commands
+
+FROM base as develop
+RUN chown -R $user:$user /var/www
+RUN chown -R www-data:www-data /var/www
+RUN chmod -R 775 /var/www
+# Set working directory
+WORKDIR /var/www
+COPY . .
+USER $user
+RUN composer install
+
+FROM base as debug
+RUN pecl install xdebug && docker-php-ext-enable xdebug
+
+FROM base as testing
 RUN chown -R $user:$user /var/www
 RUN chmod -R 775 /var/www
 # Set working directory
