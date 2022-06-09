@@ -13,6 +13,7 @@ jobs:
           persist-credentials: false
       - name: Install and Build
         run: |
+          composer install
           php artisan db:wipe --env=testing
           php artisan migrate --env=testing
           php artisan test --testsuite feature
